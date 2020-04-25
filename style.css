@@ -1,0 +1,25 @@
+canvas {
+    border:1px solid #d3d3d3;
+    background-image: url(./assets/harvest.jpg);
+    background-size: cover;
+}
+
+#mySheep {
+    width: 50px;
+    height: 50px;
+    /* position: relative;
+    margin-top: 120px;
+    right: 450px; */
+    /* background-image: url(./sheep.gif); */
+    /* background-repeat: no-repeat; */
+    /* background-size: cover; */
+  }
+
+#myContainer {
+    width: 1000px;
+    height: 300px;
+    /* margin-left: 500px; */
+    position: relative;
+    background-image: url(./assets/harvest.jpg);
+    background-size: cover;
+  }
