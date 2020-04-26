@@ -1,12 +1,12 @@
-canvas {
+/* canvas {
     border:1px solid #d3d3d3;
-    background-image: url(./assets/harvest.jpg);
+    background-image: url(./assets/background_edited.jpg);
     background-size: cover;
-}
+} */
 
 #mySheep {
-    width: 50px;
-    height: 50px;
+    width: 100px;
+    height: 100px;
     /* position: relative;
     margin-top: 120px;
     right: 450px; */
@@ -17,9 +17,9 @@ canvas {
 
 #myContainer {
     width: 1000px;
-    height: 300px;
+    height: 500px;
     /* margin-left: 500px; */
     position: relative;
-    background-image: url(./assets/harvest.jpg);
+    background-image: url(./assets/background_edited.jpg);
     background-size: cover;
   }
