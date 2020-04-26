@@ -9,46 +9,42 @@ var audiobg = new Audio('./assets/title.mp3');
 
 let fieldLeft = 0
 let fieldRight = 900
-let speed = 50
+let speed = 100
 
-let timer = setInterval(function () {
-    if (sheepStyle.left.replace("px", "") == fieldLeft ) {
-      var images = document.getElementById("gameover")
-      images.src="assets/gameover.png"
-      audiobg.pause()
-      sheep.style.display = "none";
-      images.style.display = "inline";
-      clearInterval(timer);
-      // img.alt = alt;
-    } 
-    else if (pos >= fieldRight){
-      var images = document.getElementById("gameover")
-      images.src="assets/win.jpg"
-      audiobg.pause()
-      sheep.style.display = "none";
-      images.style.display = "inline";
-      clearInterval(timer);
-    }
-    else {
-      pos --;
-      sheepStyle.left = pos + "px";
-    }
-  }, 10);
+// let timer = setInterval(function () {
+//     if (sheepStyle.left.replace("px", "") == fieldLeft ) {
+//       var images = document.getElementById("gameover")
+//       images.src="assets/gameover.png"
+//       audiobg.pause()
+//       sheep.style.display = "none";
+//       images.style.display = "inline";
+//       message.innerHTML = 'Game Over!🙅🏽'
+//       audio.currentTime = 0;
+//       clearInterval(timer);
+//       // img.alt = alt;
+//     } 
+//     else if (pos >= fieldRight){
+//       var images = document.getElementById("gameover")
+//       images.src="assets/win.jpg"
+//       audiobg.pause()
+//       sheep.style.display = "none";
+//       images.style.display = "inline";
+//       message.innerHTML = 'Wes menang!🙅🏽'
+//       clearInterval(timer);
+//     }
+//     else {
+//       pos --;
+//       sheepStyle.left = pos + "px";
+//     }
+//   }, 20);
 
 // GAME
 window.addEventListener('load', init);
 
 // Available Levels
-const levels = {
-    easy: 5,
-    medium: 3,
-    hard: 2
-}
 
 // To change level
-let currentLevel = levels.easy;
 
-let time = currentLevel;
 let score = 0;
 let isPlaying;
 let maxScore;
@@ -64,6 +60,7 @@ const highScoreElt = document.querySelector('#high-score');
 const easyBtn = document.querySelector('#easy');
 const mediumBtn = document.querySelector('#medium');
 const hardBtn = document.querySelector('#hard');
+const getStart = document.getElementById("start")
 
 const words = [
     'angular',
@@ -129,22 +126,6 @@ const words = [
 const settingOption = document.getElementById('optionBtn');
 const menuSlideElt = document.getElementById('menuSlide');
 
-// settingOption.addEventListener('click', function(){
-//     menuSlideElt.classList.toggle("slideIn");
-// });
-
-// Select level
-function setlevel(e){
-    if(e.target === easyBtn){
-        currentLevel = levels.easy;
-    }else if(e.target === mediumBtn){
-        currentLevel = levels.medium;
-    }else if(e.target === hardBtn){
-        currentLevel = levels.hard;
-    }
-    console.log(currentLevel);
-    init();
-}
 
 // Initialize Game
 function init(){
@@ -154,6 +135,7 @@ function init(){
     showWord(words);
     // Start matching on word input
     wordInput.addEventListener('input', startMatch);
+    getStart.addEventListener('click', startMove);
     // Call countdown every second
     setInterval(countdown, 1000);
     // Check game status
@@ -162,15 +144,44 @@ function init(){
     highScoreElt.innerHTML = maxScore;
 }
 
+function startMove(){
+    let timer = setInterval(function () {
+            if (sheepStyle.left.replace("px", "") == fieldLeft ) {
+              var images = document.getElementById("gameover")
+              images.src="assets/gameover.png"
+              audiobg.pause()
+              sheep.style.display = "none";
+              images.style.display = "inline";
+              message.innerHTML = 'Game Over!🙅🏽'
+              audio.currentTime = 0;
+              clearInterval(timer);
+              // img.alt = alt;
+            } 
+            else if (pos >= fieldRight){
+              var images = document.getElementById("gameover")
+              images.src="assets/win.jpg"
+              audiobg.pause()
+              sheep.style.display = "none";
+              images.style.display = "inline";
+              message.innerHTML = 'Wes menang!🙅🏽'
+              clearInterval(timer);
+            }
+            else {
+              pos --;
+              sheepStyle.left = pos + "px";
+            }
+          }, 20);
+    
+}
 
 
 //Start match
 function startMatch(){
   audiobg.play()
+  
     wordInput.value = wordInput.value.toLowerCase();
     if(matchWords()){
         isPlaying = true;
-        time = currentLevel + 1;
         showWord(words);
         wordInput.value = '';
         score++;
@@ -218,10 +229,10 @@ function matchWords(){
             randAudio().play();}
   
 
-      message.innerHTML = 'Great 👌';
+      message.innerHTML = 'Sek salah!';
       return true;
   }else{
-      message.innerHTML = '🙄';
+      message.innerHTML = 'Wes bener!';
       return false;
   }
 }
@@ -251,7 +262,7 @@ function countdown(){
 // Check game status
 function checkStatus(){
     if(!isPlaying && time === 0){
-        message.innerHTML = 'Game Over!🙅🏽';
+        ;
         score = -1;
     }
 }
