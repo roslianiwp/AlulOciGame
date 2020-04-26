@@ -1,24 +1,14 @@
-/* canvas {
-    border:1px solid #d3d3d3;
-    background-image: url(./assets/background_edited.jpg);
-    background-size: cover;
-} */
-
+body {
+  font-family: 'VT323', monospace;
+}
 #mySheep {
     width: 100px;
     height: 100px;
-    /* position: relative;
-    margin-top: 120px;
-    right: 450px; */
-    /* background-image: url(./sheep.gif); */
-    /* background-repeat: no-repeat; */
-    /* background-size: cover; */
   }
 
 #myContainer {
     width: 1000px;
     height: 500px;
-    /* margin-left: 500px; */
     position: relative;
     background-image: url(./assets/background_edited.jpg);
     background-size: cover;

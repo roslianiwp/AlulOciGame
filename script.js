@@ -5,24 +5,35 @@ var pos = 450
 sheepStyle.left = pos + "px"
 sheepStyle.position = "relative"
 sheepStyle.top = "120px"
+var audiobg = new Audio('./assets/title.mp3');
 
 let fieldLeft = 0
 let fieldRight = 900
 let speed = 50
 
 let timer = setInterval(function () {
-    if (sheepStyle.left.replace("px", "") == fieldLeft || pos >= fieldRight) {
+    if (sheepStyle.left.replace("px", "") == fieldLeft ) {
+      var images = document.getElementById("gameover")
+      images.src="assets/gameover.png"
+      audiobg.pause()
+      sheep.style.display = "none";
+      images.style.display = "inline";
       clearInterval(timer);
-      // var img = document.createElement("img");
-      // img.src = "./assets/gameover.png";
-      // img.width = "100px";
-      // img.height = "100px";
       // img.alt = alt;
-    } else {
+    } 
+    else if (pos >= fieldRight){
+      var images = document.getElementById("gameover")
+      images.src="assets/win.jpg"
+      audiobg.pause()
+      sheep.style.display = "none";
+      images.style.display = "inline";
+      clearInterval(timer);
+    }
+    else {
       pos --;
       sheepStyle.left = pos + "px";
     }
-  }, 50);
+  }, 10);
 
 // GAME
 window.addEventListener('load', init);
@@ -151,7 +162,7 @@ function init(){
     highScoreElt.innerHTML = maxScore;
 }
 
-var audiobg = new Audio('./assets/title.mp3');
+
 
 //Start match
 function startMatch(){
