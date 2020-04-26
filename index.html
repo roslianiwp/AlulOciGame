@@ -5,22 +5,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css?family=Boogaloo|Ceviche+One|Kalam|Source+Code+Pro|VT323" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Boogaloo|Ceviche+One|Kalam|Source+Code+Pro|VT323"
+        rel="stylesheet">
     <title>Document</title>
 </head>
 
-<body>
+<body style="background-image:url(./assets/background.jpg); background-size: 100%;">
     <div id="myContainer">
-        <img src="./sheep.gif" id="mySheep">
+        <div id="mySheep">
+            <div id="current-word"></div>
+            <img src="./sheep.gif" id="sheep">
+        </div>
         <img style="display: none; width: 100%; height: 100%; opacity: 80%;" id="gameover">
     </div>
-    <h3>Time Left: <span id="time">0</span> Score:<span id="score">0</span> High score: <span id="high-score">0</span></h3>
-    <p class="intro"> <span class="text-success" id="seconds"></span></p>
-    <h2 class="display-2 mb-3" id="current-word"></h2>
-    <h4 class="mt-2" id="message"></h4>
-    <input type="text" class="form-control form-control-lg" placeholder="Start typing..." id="word-input" autofocus>
-    <button><a href="index.html">Start</a></button>
-  <script src="script.js"></script>
+    <div id="typingback">
+        <h3>Score:<span id="score">0 </span> High score: <span id="high-score">0</span></h3>
+        <p class="intro"> <span class="text-success" id="seconds"></span></p>
+        <h4 class="mt-2" id="message"></h4>
+        <input type="text" class="form-control form-control-lg" placeholder="Start typing..." id="word-input" autofocus>
+        <button id="start">Start</button> 
+    </div>
+    <script src="script.js"></script>
 </body>
 
 </html>

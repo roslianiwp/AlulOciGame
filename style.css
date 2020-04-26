@@ -1,15 +1,33 @@
 body {
   font-family: 'VT323', monospace;
 }
-#mySheep {
+#sheep {
     width: 100px;
     height: 100px;
   }
-
+#mySheep{
+  top: 150px !important;
+}
 #myContainer {
     width: 1000px;
     height: 500px;
     position: relative;
-    background-image: url(./assets/background_edited.jpg);
+    margin-left: 200px;
+    background-image: url(./assets/field.jpg);
     background-size: cover;
   }
+
+#typingback {
+  background-color: white;
+  /* opacity: 50%; */
+  padding-left: 370px;
+  margin-left: 200px;
+  margin-right: 260px;
+  padding-bottom: 20px;
+  padding-top: 10px;
+}
+
+#current-word {
+  padding-left: 30px; 
+  font-size: 20px;
+}
