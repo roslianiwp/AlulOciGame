@@ -7,36 +7,10 @@ sheepStyle.position = "relative"
 sheepStyle.top = "120px"
 var audiobg = new Audio('./assets/title.mp3');
 
+let time = 0
 let fieldLeft = 0
 let fieldRight = 900
 let speed = 100
-
-// let timer = setInterval(function () {
-//     if (sheepStyle.left.replace("px", "") == fieldLeft ) {
-//       var images = document.getElementById("gameover")
-//       images.src="assets/gameover.png"
-//       audiobg.pause()
-//       sheep.style.display = "none";
-//       images.style.display = "inline";
-//       message.innerHTML = 'Game Over!🙅🏽'
-//       audio.currentTime = 0;
-//       clearInterval(timer);
-//       // img.alt = alt;
-//     } 
-//     else if (pos >= fieldRight){
-//       var images = document.getElementById("gameover")
-//       images.src="assets/win.jpg"
-//       audiobg.pause()
-//       sheep.style.display = "none";
-//       images.style.display = "inline";
-//       message.innerHTML = 'Wes menang!🙅🏽'
-//       clearInterval(timer);
-//     }
-//     else {
-//       pos --;
-//       sheepStyle.left = pos + "px";
-//     }
-//   }, 20);
 
 // GAME
 window.addEventListener('load', init);
@@ -122,10 +96,6 @@ const words = [
     'server',
     'bash'
 ];
-//option
-const settingOption = document.getElementById('optionBtn');
-const menuSlideElt = document.getElementById('menuSlide');
-
 
 // Initialize Game
 function init(){
@@ -135,9 +105,15 @@ function init(){
     showWord(words);
     // Start matching on word input
     wordInput.addEventListener('input', startMatch);
-    getStart.addEventListener('click', startMove);
+    // getStart.addEventListener('click', startMove);
+    wordInput.addEventListener('keydown', function (e) {
+        if (e.which === 13) {
+          startMove();
+        }
+    });;
+
     // Call countdown every second
-    setInterval(countdown, 1000);
+    
     // Check game status
     setInterval(checkStatus, 50);
     maxScore = localStorage.getItem('highScore');
@@ -145,25 +121,34 @@ function init(){
 }
 
 function startMove(){
+    var images = document.getElementById("gameover")
+    images.style.display = "none";
+    sheep.style.display = "flex";
+    currentWord.style.display = "flex"
+    let count = setInterval(countdown, 1000);
     let timer = setInterval(function () {
             if (sheepStyle.left.replace("px", "") == fieldLeft ) {
-              var images = document.getElementById("gameover")
               images.src="assets/gameover.png"
               audiobg.pause()
               sheep.style.display = "none";
               images.style.display = "inline";
+              images.style.marginTop = "0px"
+              images.style.opacity = "80%"
               message.innerHTML = 'Game Over!🙅🏽'
               audio.currentTime = 0;
+              clearInterval(count);
               clearInterval(timer);
               // img.alt = alt;
             } 
             else if (pos >= fieldRight){
-              var images = document.getElementById("gameover")
               images.src="assets/win.jpg"
               audiobg.pause()
               sheep.style.display = "none";
               images.style.display = "inline";
+              images.style.marginTop = "0px"
+                images.style.opacity = "80%"
               message.innerHTML = 'Wes menang!🙅🏽'
+              clearInterval(count);
               clearInterval(timer);
             }
             else {
@@ -191,15 +176,15 @@ function startMatch(){
     if(score === -1){
         scoreDisplay.innerHTML = 0;
     }else{
-        scoreDisplay.innerHTML = score;
-        highScoreElt.innerHTML = score;
+        scoreDisplay.innerHTML = time;
+        highScoreElt.innerHTML = time;
         
-        if(score >= maxScore){
-            localStorage.setItem('highScore',score);
+        if(time <= maxScore){
+            localStorage.setItem('highScore',time);
         }
     }
     maxScore = localStorage.getItem('highScore');
-    scoreDisplay.innerHTML = score;
+    scoreDisplay.innerHTML = time;
     highScoreElt.innerHTML = maxScore;
 }
 
@@ -247,15 +232,7 @@ function showWord(word){
 
 // Countdown timer
 function countdown(){
-    // Make sure time is not runout
-    if(time > 0){
-        // decrement
-        time--;
-    }else if(time === 0){
-        // Game is over
-        isPlaying = false;
-    }
-    // Show time
+    time++;
     timeDisplay.innerHTML = time;
 }
 
