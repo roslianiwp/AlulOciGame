@@ -122,6 +122,10 @@ function setLevel(e) {
 window.addEventListener("load", init);
 
 function init() {
+  let maxScore = localStorage.getItem("highScore");
+  if (maxScore !== "undefined"){
+    highScoreElt.innerHTML = `High Score : ${maxScore}`;
+  }
   wordInput.addEventListener("input", startMatch);
   wordInput.addEventListener("keydown", function (e) {
     if (e.which === 13) {
@@ -164,7 +168,6 @@ function countdown() {
   time++;
   timeDisplay.innerHTML = `Time : ${time}`;
 }
-
 // Sheep Move
 function startMove() {
   audiobg.play();
@@ -184,10 +187,6 @@ function startMove() {
       high = time;
       if (maxScore <= high) {
         highScoreElt.innerHTML = maxScore;
-      } else if (maxScore == 0 || maxScore == null || maxScore == undefined) {
-        localStorage.setItem("highScore", high);
-        let maxScore = localStorage.getItem("highScore");
-        highScoreElt.innerHTML = `High Score : ${maxScore}`;
       } else {
         localStorage.setItem("highScore", high);
         let maxScore = localStorage.getItem("highScore");
