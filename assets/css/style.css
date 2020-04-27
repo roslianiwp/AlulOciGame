@@ -5,7 +5,9 @@ body {
 }
 
 .my_container {
+  margin: 0;
   display: grid;
+  height: 705px;
   grid-template-columns: 100px auto 100px;
   grid-template-rows: 20px auto;
   background: url("../images/background.jpg") no-repeat center center;
