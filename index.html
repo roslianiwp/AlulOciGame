@@ -14,16 +14,19 @@
     <div id="myContainer">
         <div id="mySheep">
             <div id="current-word" style="display: none;"></div>
-            <img src="./sheep.gif" id="sheep">
+            <img src="./assets/sheep.gif" id="sheep">
         </div>
-        <img src="./assets/start.jpg" style="width: 100%; height: 100%; margin-top: -100px;" id="gameover">
+        <img src="./assets/bg_updated.jpg" style="width: 100%; height: 100%; margin-top: -100px;" id="gameover">
     </div>
     <div id="typingback">
         <h3>Time:<span id="time">0 </span> High score: <span id="high-score">0</span></h3>
         <p class="intro"> <span class="text-success" id="seconds"></span></p>
         <h4 class="mt-2" id="message"></h4>
         <input type="text" class="form-control form-control-lg" placeholder="Start typing..." id="word-input" autofocus>
-        <!-- <button id="start">Start</button>  -->
+        <p id="level"></p>
+        <button id="easy">Easy</button>
+        <button id="medium">Medium</button>
+        <button id="hard">Hard</button>
     </div>
     <script src="script.js"></script>
 </body>
