@@ -12,15 +12,21 @@ let fieldLeft = 0;
 let fieldRight = 850;
 let speedForward = 150;
 
-let isPlaying, maxScore, high;
+let isPlaying, high, maxScore;
+
+//Prepare Local Storage
+// localStorage.removeItem('highScore')
+if (localStorage.getItem("highScore", maxScore) == null) {
+  localStorage.setItem("highScore", maxScore);
+}
 
 // DOM Elements
-const wordInput = document.querySelector("#word-input");
-const currentWord = document.querySelector("#current-word");
-const timeDisplay = document.querySelector("#time");
-const message = document.querySelector("#message");
-const seconds = document.querySelector("#seconds");
-const highScoreElt = document.querySelector("#high-score");
+const wordInput = document.getElementById("word-input");
+const currentWord = document.getElementById("currentWord");
+const timeDisplay = document.getElementById("time");
+const message = document.getElementById("message");
+const seconds = document.getElementById("seconds");
+const highScoreElt = document.getElementById("high-score");
 
 const easyBtn = document.getElementById("easy");
 const mediumBtn = document.getElementById("medium");
@@ -123,8 +129,6 @@ function init() {
     }
   });
   showWord(words);
-  maxScore = localStorage.getItem("highScoreVal");
-  highScoreElt.innerHTML = maxScore;
 }
 
 // Win Condition
@@ -137,7 +141,7 @@ const loseCond = function () {
   images.style.opacity = "80%";
   message.innerHTML = "Game Over!🙅🏽";
   audiobg.pause();
-  loseSfx.play()
+  loseSfx.play();
   audio.currentTime = 0;
 };
 
@@ -151,14 +155,14 @@ const winCond = function () {
   images.style.opacity = "80%";
   message.innerHTML = "Wes menang!🙅🏽";
   audiobg.pause();
-  winSfx.play()
+  winSfx.play();
   audio.currentTime = 0;
 };
 
 // Countdown timer
 function countdown() {
   time++;
-  timeDisplay.innerHTML = time;
+  timeDisplay.innerHTML = `Time : ${time}`;
 }
 
 // Sheep Move
@@ -180,12 +184,14 @@ function startMove() {
       high = time;
       if (maxScore <= high) {
         highScoreElt.innerHTML = maxScore;
-      } else if (maxScore === 0 || maxScore == null) {
-        highScoreElt.innerHTML = maxScore;
+      } else if (maxScore == 0 || maxScore == null || maxScore == undefined) {
+        localStorage.setItem("highScore", high);
+        let maxScore = localStorage.getItem("highScore");
+        highScoreElt.innerHTML = `High Score : ${maxScore}`;
       } else {
-        localStorage.setItem("highScoreVal", high);
-        maxScore = localStorage.getItem("highScoreVal");
-        highScoreElt.innerHTML = maxScore;
+        localStorage.setItem("highScore", high);
+        let maxScore = localStorage.getItem("highScore");
+        highScoreElt.innerHTML = `High Score : ${maxScore}`;
       }
     } else {
       pos--;
@@ -246,6 +252,7 @@ function showWord(word) {
   currentWord.innerHTML = words[randIndex];
 }
 
+// Button Level
 easyBtn.addEventListener("click", setLevel);
 mediumBtn.addEventListener("click", setLevel);
 hardBtn.addEventListener("click", setLevel);
