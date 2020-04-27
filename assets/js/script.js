@@ -44,66 +44,7 @@ const getStart = document.getElementById("start");
 const images = document.getElementById("gameover");
 
 const level = document.getElementById("level")
-const words = [
-  "angular",
-  "magic",
-  "brew",
-  "while",
-  "throw",
-  "css",
-  "break",
-  "swing",
-  "echo",
-  "let",
-  "wall",
-  "laughter",
-  "hash",
-  "spinner",
-  "beer",
-  "ninja",
-  "javascript",
-  "master",
-  "program",
-  "coding",
-  "hero",
-  "learning",
-  "work",
-  "case",
-  "react",
-  "dragon",
-  "rush",
-  "api",
-  "init",
-  "motion",
-  "google",
-  "float",
-  "damn",
-  "block",
-  "ranking",
-  "nice",
-  "machine",
-  "perfect",
-  "deploy",
-  "terminal",
-  "array",
-  "vue",
-  "node",
-  "html",
-  "front",
-  "grid",
-  "stack",
-  "mac",
-  "console",
-  "ajax",
-  "heroku",
-  "loop",
-  "sql",
-  "php",
-  "data",
-  "npm",
-  "server",
-  "bash",
-];
+const words = ["angular", "magic", "brew", "while", "throw", "css", "break", "swing", "echo", "let", "wall", "laughter", "hash", "spinner", "beer", "ninja", "javascript","master", "program", "coding","hero","learning","work","case","react","dragon","rush","api","init","motion","google","float","damn","block","ranking","nice","machine","perfect","deploy","terminal","array","vue","node","html","front","grid","stack","mac","console","ajax","heroku","loop","sql","php","data","npm", "server", "bash"];
 
 function setlevel(e){
   if(e.target === easyBtn){
@@ -129,7 +70,7 @@ function init() {
 }
 
 const loseCond = function () {
-  images.src = "assets/gameover.png";
+  images.src = "assets/images/gameover.png";
   sheep.style.display = "none";
   images.style.display = "inline";
   images.style.marginTop = "0px";
@@ -140,7 +81,7 @@ const loseCond = function () {
 };
 
 const winCond = function () {
-  images.src = "assets/win.jpg";
+  images.src = "assets/images/win.jpg";
   sheep.style.display = "none";
   images.style.display = "inline";
   images.style.marginTop = "0px";
@@ -150,7 +91,13 @@ const winCond = function () {
   audio.currentTime = 0;
 };
 
-let high
+// Countdown timer
+function countdown() {
+  time++;
+  timeDisplay.innerHTML = time;
+}
+
+let high;
 function startMove() {
   images.style.display = "none";
   sheep.style.display = "flex";
@@ -168,7 +115,11 @@ function startMove() {
       high = time;
       if (maxScore <= high) {
         highScoreElt.innerHTML = maxScore;
-      } else{
+      } 
+      else if (maxScore === 0 || maxScore == null){
+        highScoreElt.innerHTML = maxScore;
+      }
+      else{
         localStorage.setItem("highScoreVal", high);
         maxScore = localStorage.getItem("highScoreVal");
         highScoreElt.innerHTML = maxScore;
@@ -192,15 +143,14 @@ function startMatch() {
   }
 }
 
-
 // Sheep audio
-const audiobg = new Audio("./assets/title.mp3");
-const audio = new Audio("./assets/kambing.mp3");
-const audio1 = new Audio("./assets/kambing1.wav");
-const audio2 = new Audio("./assets/kambing2.wav");
-const audio3 = new Audio("./assets/kambing3.wav");
-const audio4 = new Audio("./assets/kambing4.wav");
-const audio5 = new Audio("./assets/kambing5.wav");
+const audiobg = new Audio("./assets/sfx/title.mp3");
+const audio = new Audio("./assets/sfx/kambing.mp3");
+const audio1 = new Audio("./assets/sfx/kambing1.wav");
+const audio2 = new Audio("./assets/sfx/kambing2.wav");
+const audio3 = new Audio("./assets/sfx/kambing3.wav");
+const audio4 = new Audio("./assets/sfx/kambing4.wav");
+const audio5 = new Audio("./assets/sfx/kambing5.wav");
 
 const audio_list = [audio, audio1, audio2, audio3, audio4, audio5];
 
@@ -233,12 +183,6 @@ function matchWords() {
 function showWord(word) {
   const randIndex = Math.floor(Math.random() * words.length);
   currentWord.innerHTML = words[randIndex];
-}
-
-// Countdown timer
-function countdown() {
-  time++;
-  timeDisplay.innerHTML = time;
 }
 
 easyBtn.addEventListener('click', setlevel);
