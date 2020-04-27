@@ -1,7 +1,8 @@
-// DISPLAY KAMBING
+// Display Domba
 let sheep = document.getElementById("mySheep");
 let sheepStyle = sheep.style;
 let pos = 450;
+
 sheepStyle.left = pos + "px";
 sheepStyle.position = "relative";
 sheepStyle.top = "120px";
@@ -11,22 +12,7 @@ let fieldLeft = 0;
 let fieldRight = 850;
 let speedForward = 150;
 
-// GAME
-window.addEventListener("load", init);
-
-// Available Levels
-const levels = {
-  easy: 20,
-  medium: 10,
-  hard: 8
-}
-
-// To change level
-let currentLevel = levels.easy;
-let speedBackward = currentLevel;
-let score = 0;
-let isPlaying;
-let maxScore;
+let isPlaying, maxScore, high;
 
 // DOM Elements
 const wordInput = document.querySelector("#word-input");
@@ -43,20 +29,92 @@ const hardBtn = document.getElementById("hard");
 const getStart = document.getElementById("start");
 const images = document.getElementById("gameover");
 
-const level = document.getElementById("level")
-const words = ["angular", "magic", "brew", "while", "throw", "css", "break", "swing", "echo", "let", "wall", "laughter", "hash", "spinner", "beer", "ninja", "javascript","master", "program", "coding","hero","learning","work","case","react","dragon","rush","api","init","motion","google","float","damn","block","ranking","nice","machine","perfect","deploy","terminal","array","vue","node","html","front","grid","stack","mac","console","ajax","heroku","loop","sql","php","data","npm", "server", "bash"];
+const level = document.getElementById("level");
+const words = [
+  "angular",
+  "magic",
+  "brew",
+  "while",
+  "throw",
+  "css",
+  "break",
+  "swing",
+  "echo",
+  "let",
+  "wall",
+  "laughter",
+  "hash",
+  "spinner",
+  "beer",
+  "ninja",
+  "javascript",
+  "master",
+  "program",
+  "coding",
+  "hero",
+  "learning",
+  "work",
+  "case",
+  "react",
+  "dragon",
+  "rush",
+  "api",
+  "init",
+  "motion",
+  "google",
+  "float",
+  "damn",
+  "block",
+  "ranking",
+  "nice",
+  "machine",
+  "perfect",
+  "deploy",
+  "terminal",
+  "array",
+  "vue",
+  "node",
+  "html",
+  "front",
+  "grid",
+  "stack",
+  "mac",
+  "console",
+  "ajax",
+  "heroku",
+  "loop",
+  "sql",
+  "php",
+  "data",
+  "npm",
+  "server",
+  "bash",
+];
 
-function setlevel(e){
-  if(e.target === easyBtn){
-      currentLevel = levels.easy;
-  }else if(e.target === mediumBtn){
-      currentLevel = levels.medium;
-  }else if(e.target === hardBtn){
-      currentLevel = levels.hard;
+// Available Levels
+const levels = {
+  easy: 20,
+  medium: 10,
+  hard: 8,
+};
+
+// To change level
+let currentLevel = levels.easy;
+let speedBackward = currentLevel;
+
+function setLevel(e) {
+  if (e.target === easyBtn) {
+    currentLevel = levels.easy;
+  } else if (e.target === mediumBtn) {
+    currentLevel = levels.medium;
+  } else if (e.target === hardBtn) {
+    currentLevel = levels.hard;
   }
 }
 
 // Initialize Game
+window.addEventListener("load", init);
+
 function init() {
   wordInput.addEventListener("input", startMatch);
   wordInput.addEventListener("keydown", function (e) {
@@ -69,6 +127,8 @@ function init() {
   highScoreElt.innerHTML = maxScore;
 }
 
+// Win Condition
+const loseSfx = new Audio("./assets/sfx/lose.wav");
 const loseCond = function () {
   images.src = "assets/images/gameover.png";
   sheep.style.display = "none";
@@ -77,9 +137,12 @@ const loseCond = function () {
   images.style.opacity = "80%";
   message.innerHTML = "Game Over!🙅🏽";
   audiobg.pause();
+  loseSfx.play()
   audio.currentTime = 0;
 };
 
+// Lose Condition
+const winSfx = new Audio("./assets/sfx/win.wav");
 const winCond = function () {
   images.src = "assets/images/win.jpg";
   sheep.style.display = "none";
@@ -88,6 +151,7 @@ const winCond = function () {
   images.style.opacity = "80%";
   message.innerHTML = "Wes menang!🙅🏽";
   audiobg.pause();
+  winSfx.play()
   audio.currentTime = 0;
 };
 
@@ -97,8 +161,9 @@ function countdown() {
   timeDisplay.innerHTML = time;
 }
 
-let high;
+// Sheep Move
 function startMove() {
+  audiobg.play();
   images.style.display = "none";
   sheep.style.display = "flex";
   currentWord.style.display = "flex";
@@ -115,11 +180,9 @@ function startMove() {
       high = time;
       if (maxScore <= high) {
         highScoreElt.innerHTML = maxScore;
-      } 
-      else if (maxScore === 0 || maxScore == null){
+      } else if (maxScore === 0 || maxScore == null) {
         highScoreElt.innerHTML = maxScore;
-      }
-      else{
+      } else {
         localStorage.setItem("highScoreVal", high);
         maxScore = localStorage.getItem("highScoreVal");
         highScoreElt.innerHTML = maxScore;
@@ -128,13 +191,11 @@ function startMove() {
       pos--;
       sheepStyle.left = pos + "px";
     }
-  }, speedBackward = currentLevel);
+  }, (speedBackward = currentLevel));
 }
 
-//Start match
+//Start Typing
 function startMatch() {
-  audiobg.play();
-
   wordInput.value = wordInput.value.toLowerCase();
   if (matchWords()) {
     isPlaying = true;
@@ -185,6 +246,6 @@ function showWord(word) {
   currentWord.innerHTML = words[randIndex];
 }
 
-easyBtn.addEventListener('click', setlevel);
-mediumBtn.addEventListener('click', setlevel);
-hardBtn.addEventListener('click', setlevel);
+easyBtn.addEventListener("click", setLevel);
+mediumBtn.addEventListener("click", setLevel);
+hardBtn.addEventListener("click", setLevel);
