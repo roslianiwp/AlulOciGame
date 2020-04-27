@@ -1,54 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://fonts.googleapis.com/css?family=Boogaloo|Ceviche+One|Kalam|Source+Code+Pro|VT323" rel="stylesheet">
-    <link rel="stylesheet" href="./assets/css/style.css" />
-    <title>Document</title>
-  </head>
-  <body>
-    <div class="my_container">
-      <div class="item-A"></div>
-      <div class="item-B"></div>
-      <div class="item-C"></div>
-      <div class="item-D"></div>
-      <div class="item-E">
-        <div class="container_screen">
-          <div class="gameScreen">
-            <div id="mySheep">
-              <div id="current-word" style="display: none;"></div>
-              <img src="./assets/images/sheep.gif" id="sheep">
-            </div>
-            <img src="./assets/images/bg_updated.jpg" style="width: 1000px; height: 450px; margin-top: -230px;" id="gameover">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css?family=Boogaloo|Ceviche+One|Kalam|Source+Code+Pro|VT323"
+    rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/style.css" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="myContainer">
+    <div class="item-A"></div>
+    <div class="item-B"></div>
+    <div class="item-C"></div>
+    <div class="item-D"></div>
+    <div class="item-E">
+      <div class="containerScreen">
+        <div class="gameScreen">
+          <div id="mySheep">
+            <div id="currentWord"></div>
+            <img src="./assets/images/sheep.gif" id="sheep">
           </div>
-          <div class="gameTyping">
-            <div id="typingback">
-              <h3>Time:<span id="time">0 </span> High score:<span id="high-score">0</span></h3>
-              <p class="intro">
-                <span class="text-success" id="seconds"></span>
-              </p>
-              <h4 class="mt-2" id="message"></h4>
-              <input
-                type="text"
-                class="form-control form-control-lg"
-                placeholder="Start typing..."
-                id="word-input"
-                autofocus
-              />
-              <p id="level"></p>
-              <div class="my_button">
-                <button id="easy" class="easy">Easy</button>
-                <button id="medium" class="medium">Medium</button>
-                <button id="hard" class="hard">Hard</button>
-              </div>
+          <img src="./assets/images/bg_updated.jpg" id="gameover">
+        </div>
+        <div class="gameTyping">
+          <div id="typingback">
+            <h3>
+              <span id="time"></span><br>
+              <span id="high-score"></span>
+            </h3>
+
+            <h4 id="message"></h4>
+            <input type="text" class="form-control form-control-lg" placeholder="Start typing..." id="word-input"
+              autofocus />
+            <p id="level"></p>
+            <div class="myButton">
+              <button id="easy" class="easy">Easy</button>
+              <button id="medium" class="medium">Medium</button>
+              <button id="hard" class="hard">Hard</button>
             </div>
           </div>
         </div>
       </div>
-      <div class="item-F"></div>
     </div>
-    <script src="./assets/js/script.js"></script>
+    <div class="item-F"></div>
+  </div>
+  <script src="./assets/js/script.js"></script>
 
-  </body>
+</body>
+
 </html>

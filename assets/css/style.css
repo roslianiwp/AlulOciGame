@@ -4,7 +4,7 @@ body {
  font-family: 'VT323', monospace;
 }
 
-.my_container {
+.myContainer {
   margin: 0;
   display: grid;
   height: 705px;
@@ -93,7 +93,7 @@ body {
   justify-content: center;
 }
 
-.container_screen {
+.containerScreen {
   display: inline-block;
 }
 
@@ -108,9 +108,16 @@ body {
   top: 0px !important;
 }
 
-#current-word {
+#currentWord {
   padding-top: 120px; 
   font-size: 40px;
+  display: none;
+}
+
+#gameover {
+  width: 1000px;
+  height: 450px;
+  margin-top: -230px;
 }
 
 .gameScreen {
@@ -131,7 +138,7 @@ body {
   justify-content: center;
 }
 
-.my_button {
+.myButton {
   justify-content: center;
   align-items: center;
   margin: auto;
